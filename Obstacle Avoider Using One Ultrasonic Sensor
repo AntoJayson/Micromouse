@@ -1,0 +1,55 @@
+//Motor Pins Inititialization
+
+const int LMA=5;
+const int LMB=3;
+const int RMA=6;
+const int RMB=9;
+
+//Ultrasonic HR-04 Initialization
+
+const int TRIG=A0;
+const int ECHO=A1;
+
+const int SERVO=10;
+
+int time_taken,distance_front;
+
+void setup() 
+{
+  pinMode(LMA,OUTPUT);
+  pinMode(LMB,OUTPUT);
+  pinMode(RMA,OUTPUT);
+  pinMode(RMB,OUTPUT);
+  pinMode(TRIG,OUTPUT);
+  pinMode(ECHO,INPUT);
+  Serial.begin(9600);
+}
+
+void loop() 
+{
+     digitalWrite(TRIG,LOW);
+    delay(2);
+    digitalWrite(TRIG,HIGH);
+    delay(10);
+    digitalWrite(TRIG,LOW);
+    time_taken = pulseIn(ECHO,HIGH);
+    Serial.print("  ");
+    distance_front=(time_taken*0.343)/2;//Calculating Distance
+    Serial.print(distance_front);
+  if(distance_front<100)
+  {
+    digitalWrite(LMA,LOW);
+    digitalWrite(LMB,LOW);
+    digitalWrite(RMA,LOW);
+    digitalWrite(RMB,LOW);
+  }
+    if(distance_front>250)
+   {
+      digitalWrite(LMA,HIGH);
+      digitalWrite(LMB,LOW);
+      digitalWrite(RMA,HIGH);
+      digitalWrite(RMB,LOW);
+    }
+  
+
+}
