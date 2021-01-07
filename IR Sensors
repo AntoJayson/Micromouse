@@ -1,0 +1,12 @@
+* To read and calibrate the sensors we need to have an idea how it actually works. This document wil show the progress on the sensor as I try and figure out how to optimally read the values 
+* Sensor in use SHARP GP2Y0A710K0F
+
+-An IR distance sensor uses a beam of infrared light to reflect off an object to measure its distance. 
+-The distance is calculated using triangulation of the beam of light. 
+-The sensor consists of an IR LED and a light detector or PSD (Position Sensing Device).
+-When the beam of light gets reflected by an object, the reflected beam will reach the light detector and an ‘optical spot’ will form on the PSD.
+
+-IR distance sensors output an analog signal, which changes depending on the distance between the sensor and an object. 
+-From the datasheet, you can see that the output voltage of the SHARP GP2Y0A710K0F ranges from 2.5 V when an object is 100 cm away to 1.4 V when an object is 500 cm away.
+
+Distance (cm) = 1/((Output_voltage_mV – 1125)/137500) [Assuming]
