@@ -1,0 +1,54 @@
+
+//Initilkiaing the variables for PWM
+
+const int LM1 = 9;
+const int LM2 = 6;
+const int RM1 = 5;
+const int RM2 = 3;
+
+void setup() 
+{
+  // put your setup code here, to run once:
+  pinMode(LM1,OUTPUT);
+  pinMode(LM2,OUTPUT);
+  pinMode(RM1,OUTPUT);
+  pinMode(RM2,OUTPUT);
+}
+
+void loop() 
+{
+  // put your main code here, to run repeatedly:
+  for(int i=0; i<255; i++)//Increase speed gradually
+  {
+    analogWrite(LM1,i);
+    analogWrite(LM2,0);
+    analogWrite(RM1,i);
+    analogWrite(RM2,0);
+    delay(500);
+  }
+  delay(2000);
+  for(int i=255; i>=0; i--)//Decrease speed gradually
+  {
+    analogWrite(LM1,i);
+    analogWrite(LM2,0);
+    analogWrite(RM1,i);
+    analogWrite(RM2,0);
+  }
+  delay(5000);
+  for(int i=0; i<255; i++)//Increase speed gradually
+  {
+    analogWrite(LM1,0);
+    analogWrite(LM2,i);
+    analogWrite(RM1,0);
+    analogWrite(RM2,i);
+    delay(500);
+  }
+  delay(2000);
+  for(int i=255; i>=0; i--)//Decrease speed gradually
+  {
+    analogWrite(LM1,0);
+    analogWrite(LM2,i);
+    analogWrite(RM1,0);
+    analogWrite(RM2,i);
+  }
+}
